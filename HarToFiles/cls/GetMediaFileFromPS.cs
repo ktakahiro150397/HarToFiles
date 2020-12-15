@@ -44,10 +44,12 @@ namespace HarToFiles.cls
             var filterdList = dataObjList.Where(elem => searchCondition.extension.Contains(elem.extension))
                                             .ToList();
 
+            Console.WriteLine("ダウンロード対象は{0}件です。", filterdList.Count);
             //データをダウンロードする
             //ダウンロードしたデータを保存する
             foreach(var item in filterdList)
             {
+                Console.WriteLine("DL:{0}", item.FileName);
                 DataDownloader.DownloadFile(item.Url, destUri, item.FileName);
             }
         }
@@ -62,7 +64,7 @@ namespace HarToFiles.cls
             //改行コードを変換する
             var targetStr = inputStr.Replace(Environment.NewLine, "<NL>");
 
-            var separetedStr = Regex.Matches(targetStr, "Invoke-WebRequest.*?};").ToList();
+            var separetedStr = Regex.Matches(targetStr, "Invoke-WebRequest.*?;").ToList();
             //var separetedStr = Regex.Split(, "Invoke-WebRequest.*?};").ToList();
 
             var retList = new List<PSScriptData>();

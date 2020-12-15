@@ -53,7 +53,7 @@ namespace HarToFiles
                             var fileStr = sr.ReadToEnd();
 
                             //検索条件を設定する
-                            var conditionList = new List<string> { ".ts", ".jpg", ".png",".webp" };
+                            var conditionList = new List<string> { ".ts" };
                             ISearchCondition searchCondition = new SearchCondition(conditionList);
 
                             //読み取った文字列を解析する

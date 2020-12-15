@@ -2,7 +2,7 @@
   "profiles": {
     "HarToFiles": {
       "commandName": "Project",
-      "commandLineArgs": "\"ps1\" \"C:\\Users\\Takahiro\\source\\repos\\HarToFiles\\HarToFiles\\_test\\google_picSearch.txt\" \"C:\\Users\\Takahiro\\source\\repos\\HarToFiles\\HarToFiles\\_test\\result\""
+      "commandLineArgs": "\"ps1\" \"D:\\Video\\Sample Videos\\新しいフォルダー (11)\\1002_S2836_ps.txt\" \"D:\\Video\\Sample Videos\\新しいフォルダー (11)\\1002_S2836_ps\""
     }
   }
 }
