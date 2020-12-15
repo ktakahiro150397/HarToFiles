@@ -1,7 +1,8 @@
 {
   "profiles": {
     "HarToFiles": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "\"ps1\" \"C:\\Users\\Takahiro\\source\\repos\\HarToFiles\\HarToFiles\\_test\\google_picSearch.txt\" \"C:\\Users\\Takahiro\\source\\repos\\HarToFiles\\HarToFiles\\_test\\result\""
     }
   }
 }

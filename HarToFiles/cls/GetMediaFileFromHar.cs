@@ -17,7 +17,7 @@ namespace HarToFiles.cls
         /// </summary>
         /// <param name="har">メディアファイルを取得する<see cref="Har"/>。</param>
         /// <param name="uri">メディアファイルの保存先。</param>
-        public GetMediaFileFromHar(Har har,string uri)
+        public GetMediaFileFromHar(Har har, string uri)
         {
             targetHar = har;
             dest = uri;
@@ -35,16 +35,19 @@ namespace HarToFiles.cls
             //取得したデータのtextをそれぞれbase64でデコードする
             //デコードしたファイルを、保存先に保存する
             //ファイル名はrequestのurlのファイル名とする
-            foreach(var data in videoData)
+            foreach (var data in videoData)
             {
-                var fileName = Path.GetFileName(data.request.url);
-                fileName = System.Text.RegularExpressions.Regex.Replace(fileName, "\\?.*", "");
-                var destFullPath = Path.Combine(dest, fileName);
-
-                using(var fs = File.Create(destFullPath))
+                if (!(data.response.content.text == null))
                 {
-                    //textをbase64デコードして書き込む
-                    fs.Write(Convert.FromBase64String(data.response.content.text));
+                    var fileName = Path.GetFileName(data.request.url);
+                    fileName = System.Text.RegularExpressions.Regex.Replace(fileName, "\\?.*", "");
+                    var destFullPath = Path.Combine(dest, fileName);
+
+                    using (var fs = File.Create(destFullPath))
+                    {
+                        //textをbase64デコードして書き込む
+                        fs.Write(Convert.FromBase64String(data.response.content.text));
+                    }
                 }
             }
 

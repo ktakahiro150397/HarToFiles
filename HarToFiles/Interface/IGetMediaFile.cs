@@ -9,6 +9,6 @@ namespace HarToFiles.Interface
     /// </summary>
     interface IGetMediaFile
     {
-        public abstract void SaveFile(ISearchCondition searchCondition);
+        public void SaveFile(ISearchCondition searchCondition);
     }
 }

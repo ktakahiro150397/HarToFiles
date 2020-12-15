@@ -12,11 +12,6 @@ namespace HarToFiles.Interface
         /// <summary>
         /// 取得するファイルの拡張子の条件。
         /// </summary>
-        public string extension { get; set; }
-
-        /// <summary>
-        /// 取得するレスポンスのMIMEType。
-        /// </summary>
-        public string MimeType { get; set; }
+        public List<string> extension { get; set; }
     }
 }

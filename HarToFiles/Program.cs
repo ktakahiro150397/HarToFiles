@@ -2,6 +2,9 @@
 using System.IO;
 using HarToFiles.Model;
 using HarToFiles.cls;
+using HarToFiles.Interface;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace HarToFiles
 {
@@ -45,7 +48,22 @@ namespace HarToFiles
                         }
                         break;
                     case "ps1":
-                        break;
+                        using (var sr = new StreamReader(targetFilePath))
+                        {
+                            var fileStr = sr.ReadToEnd();
+
+                            //検索条件を設定する
+                            var conditionList = new List<string> { ".ts", ".jpg", ".png",".webp" };
+                            ISearchCondition searchCondition = new SearchCondition(conditionList);
+
+                            //読み取った文字列を解析する
+                            IGetMediaFile psGetter = new GetMediaFileFromPS(fileStr, destFolderPath);
+                            //ファイルを取得する
+                            psGetter.SaveFile(searchCondition);
+
+
+                        }
+                            break;
                     default:
                         Console.WriteLine("引数が正しくありません。");
                         Console.WriteLine("第一引数には適切なモードを指定してください。");

@@ -7,16 +7,13 @@ namespace HarToFiles.Model
 {
     class SearchCondition : ISearchCondition
     {
-        private string _extension;
-        private string _mimeType;
+        private List<string> _extension;
 
-        string ISearchCondition.extension { get => _extension; set => _extension = value; }
-        string ISearchCondition.MimeType { get => _mimeType; set => _mimeType = value; }
+        List<string> ISearchCondition.extension { get => _extension; set => _extension = value; }
 
-        public SearchCondition(string extension,string mimeType)
+        public SearchCondition(List<string> extension)
         {
             this._extension = extension;
-            this._mimeType = mimeType;
         }
     }
 }
