@@ -29,6 +29,11 @@ namespace HarToFiles
                 string targetFilePath = args[1];
                 string destFolderPath = args[2];
 
+                //検索条件を設定する
+                var conditionList = new List<string> { ".ts" };
+                ISearchCondition searchCondition = new SearchCondition(conditionList);
+
+
                 switch (mode)
                 {
                     case "har":
@@ -42,8 +47,8 @@ namespace HarToFiles
                             var harDeserialized = harDeserializer.Deserialize();
 
                             //読み取ったデータを保存する
-                            var mediaGetter = new GetMediaFileFromHar(harDeserialized, destFolderPath);
-                            mediaGetter.SaveVideo();
+                            IGetMediaFile mediaGetter = new GetMediaFileFromHar(harDeserialized, destFolderPath);
+                            mediaGetter.SaveVideo(searchCondition);
 
                         }
                         break;
@@ -52,10 +57,7 @@ namespace HarToFiles
                         {
                             var fileStr = sr.ReadToEnd();
 
-                            //検索条件を設定する
-                            var conditionList = new List<string> { ".ts" };
-                            ISearchCondition searchCondition = new SearchCondition(conditionList);
-
+                           
                             //読み取った文字列を解析する
                             IGetMediaFile psGetter = new GetMediaFileFromPS(fileStr, destFolderPath);
                             //ファイルを取得する

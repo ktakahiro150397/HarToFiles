@@ -4,10 +4,11 @@ using System.Text;
 using HarToFiles.Model;
 using System.Linq;
 using System.IO;
+using HarToFiles.Interface;
 
 namespace HarToFiles.cls
 {
-    class GetMediaFileFromHar
+    class GetMediaFileFromHar:IGetMediaFile
     {
         private Har targetHar;
         private string dest;
@@ -27,7 +28,7 @@ namespace HarToFiles.cls
         /// <see cref="Har"/>クラスデータから、動画データを取得して保存します。
         /// </summary>
         /// <returns>成功した場合true。失敗した場合false。</returns>
-        public bool SaveVideo()
+        void IGetMediaFile.SaveVideo(ISearchCondition searchCondition)
         {
             //mimeTypeが"video"から始まっているデータを取得する
             var videoData = targetHar.log.entries.Where(entry => entry.response.content.mimeType.StartsWith("video")).ToList();
@@ -50,8 +51,6 @@ namespace HarToFiles.cls
                     }
                 }
             }
-
-            return true;
         }
     }
 }
